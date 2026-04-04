@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://admin:password123@localhost:5432/ecommerce?schema=public"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+  reviews   Review[]
+
+  @@map("users")
+}
+
+model Product {
+  id            String      @id @default(uuid())
+  name          String
+  description   String?
+  price         Float
+  imageUrl      String
+  createdAt     DateTime    @default(now())
+  stock         Int         @default(0)
+  category      String      @default("Uncategorized")
+  brand         String      @default("Generic")
+  originalPrice Float?
+  sold          Int         @default(0)
+  rating        Float       @default(4.8)
+  orderItems    OrderItem[]
+  reviews       Review[]
+
+  @@map("products")
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  customerName String
+  email        String
+  address      String
+  totalAmount  Float
+  status       String      @default("PENDING")
+  createdAt    DateTime    @default(now())
+  userId       String?
+  items        OrderItem[]
+  user         User?       @relation(fields: [userId], references: [id])
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  comment   String?
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("reviews")
+}
+
+model Coupon {
+  id             String   @id @default(uuid())
+  code           String   @unique
+  discountAmount Float
+  expiryDate     DateTime
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+
+  @@map("coupons")
+}
+
+enum Role {
+  USER
+  ADMIN
+}

@@ -1,0 +1,18 @@
+import { ConfigService } from '@nestjs/config';
+export declare class PaymentsService {
+    private configService;
+    private stripe;
+    constructor(configService: ConfigService);
+    createCheckoutSession(order: {
+        id: string;
+        totalAmount: number;
+        customerName: string;
+        email: string;
+    }): Promise<{
+        url: any;
+    }>;
+    createPaymentIntent(amount: number): Promise<{
+        clientSecret: any;
+    }>;
+    constructEventFromPayload(signature: string, payload: Buffer): Promise<any>;
+}

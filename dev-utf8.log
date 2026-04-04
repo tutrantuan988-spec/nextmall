@@ -1,0 +1,69 @@
+﻿
+> ecommerce-monorepo@ dev C:\webpro
+> turbo run dev
+
+ΓÇó Packages in scope: backend, frontend
+ΓÇó Running dev in 2 packages
+ΓÇó Remote caching disabled
+frontend:dev: cache bypass, force executing c4a5ea656c85c812
+backend:dev: cache bypass, force executing db596f03ba4a92ef
+frontend:dev: 
+frontend:dev: > frontend@0.1.0 dev C:\webpro\apps\frontend
+frontend:dev: > next dev
+frontend:dev: 
+backend:dev: 
+backend:dev: > backend@0.0.1 dev C:\webpro\apps\backend
+backend:dev: > npm run start:dev
+backend:dev: 
+backend:dev: 
+backend:dev: > backend@0.0.1 start:dev
+backend:dev: > nest start --watch
+backend:dev: 
+frontend:dev: Γû▓ Next.js 16.2.2 (Turbopack)
+frontend:dev: - Local:         http://localhost:3000
+frontend:dev: - Network:       http://26.217.42.9:3000
+frontend:dev: Γ£ô Ready in 548ms
+frontend:dev: 
+backend:dev: [2J[3J[H[[90m02:26:30[0m] Starting compilation in watch mode...
+backend:dev: 
+backend:dev: [[90m02:26:33[0m] Found 0 errors. Watching for file changes.
+backend:dev: 
+backend:dev: [32m[Nest] 8740  - [39m02:26:34 04/04/2026 [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+backend:dev: [32m[Nest] 8740  - [39m02:26:34 04/04/2026 [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +18ms[39m
+backend:dev: [31m[Nest] 8740  - [39m02:26:34 04/04/2026 [31m  ERROR[39m [38;5;3m[ExceptionHandler] [39mUnknownDependenciesException [Error]: Nest can't resolve dependencies of the ProductsService (PrismaService, ?). Please make sure that the argument SearchService at index [1] is available in the ProductsModule module.
+backend:dev: 
+backend:dev: Potential solutions:
+backend:dev: - Is ProductsModule a valid NestJS module?
+backend:dev: - If SearchService is a provider, is it part of the current ProductsModule?
+backend:dev: - If SearchService is exported from a separate @Module, is that module imported within ProductsModule?
+backend:dev:   @Module({
+backend:dev:     imports: [ /* the Module containing SearchService */ ]
+backend:dev:   })
+backend:dev: 
+backend:dev: For more common dependency resolution issues, see: https://docs.nestjs.com/faq/common-errors
+backend:dev:     at Injector.lookupComponentInParentModules (C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\injector.js:290:19)
+backend:dev:     at async resolveParam (C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\injector.js:140:38)
+backend:dev:     at async Promise.all (index 1)
+backend:dev:     at async Injector.resolveConstructorParams (C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\injector.js:169:27)
+backend:dev:     at async Injector.loadInstance (C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\injector.js:75:13)
+backend:dev:     at async Injector.loadProvider (C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\injector.js:103:9)
+backend:dev:     at async C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\instance-loader.js:56:13
+backend:dev:     at async Promise.all (index 3)
+backend:dev:     at async InstanceLoader.createInstancesOfProviders (C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\instance-loader.js:55:9)
+backend:dev:     at async C:\webpro\node_modules\[4m.pnpm[24m\@nestjs+core@11.1.18_@nestjs+common@11.1.18_reflect-metadata@0.2.2_rxjs@7.8.2__@nestjs+platfo_wkrh6e2zbcpyyt7sopftwucese\node_modules\[4m@nestjs\core[24m\injector\instance-loader.js:40:13 {
+backend:dev:   type: [32m'ProductsService'[39m,
+backend:dev:   context: {
+backend:dev:     index: [33m1[39m,
+backend:dev:     dependencies: [
+backend:dev:       [36m[class PrismaService extends t][39m,
+backend:dev:       [36m[class SearchService][39m
+backend:dev:     ],
+backend:dev:     name: [36m[class SearchService][39m
+backend:dev:   },
+backend:dev:   metadata: {
+backend:dev:     id: [32m'5459f166a17d2a9b8345b'[39m
+backend:dev:   },
+backend:dev:   moduleRef: {
+backend:dev:     id: [32m'3274af88d8985d3b56735'[39m
+backend:dev:   }
+backend:dev: }
