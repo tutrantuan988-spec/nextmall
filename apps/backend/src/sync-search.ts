@@ -21,46 +21,48 @@ async function sync() {
     console.log('--- Creating Index with New Mappings ---');
     await esClient.indices.create({
       index: INDEX_NAME,
-      settings: {
-        analysis: {
-          analyzer: {
-            autocomplete_analyzer: {
-              type: 'custom',
-              tokenizer: 'autocomplete_tokenizer',
-              filter: ['lowercase'],
+      body: {
+        settings: {
+          analysis: {
+            analyzer: {
+              autocomplete_analyzer: {
+                type: 'custom',
+                tokenizer: 'autocomplete_tokenizer',
+                filter: ['lowercase'],
+              },
             },
-          },
-          tokenizer: {
-            autocomplete_tokenizer: {
-              type: 'edge_ngram',
-              min_gram: 2,
-              max_gram: 20,
-              token_chars: ['letter', 'digit'],
-            },
-          },
-        },
-      },
-      mappings: {
-        properties: {
-          id: { type: 'keyword' },
-          name: {
-            type: 'text',
-            fields: {
-              suggest: {
-                type: 'text',
-                analyzer: 'autocomplete_analyzer',
-                search_analyzer: 'standard',
+            tokenizer: {
+              autocomplete_tokenizer: {
+                type: 'edge_ngram',
+                min_gram: 2,
+                max_gram: 20,
+                token_chars: ['letter', 'digit'],
               },
             },
           },
-          description: { type: 'text' },
-          price: { type: 'float' },
-          originalPrice: { type: 'float' },
-          stock: { type: 'integer' },
-          sold: { type: 'integer' },
-          imageUrl: { type: 'keyword' },
-          category: { type: 'keyword' },
-          brand: { type: 'keyword' },
+        },
+        mappings: {
+          properties: {
+            id: { type: 'keyword' },
+            name: {
+              type: 'text',
+              fields: {
+                suggest: {
+                  type: 'text',
+                  analyzer: 'autocomplete_analyzer',
+                  search_analyzer: 'standard',
+                },
+              },
+            },
+            description: { type: 'text' },
+            price: { type: 'float' },
+            originalPrice: { type: 'float' },
+            stock: { type: 'integer' },
+            sold: { type: 'integer' },
+            imageUrl: { type: 'keyword' },
+            category: { type: 'keyword' },
+            brand: { type: 'keyword' },
+          },
         },
       },
     });
@@ -71,7 +73,7 @@ async function sync() {
       await esClient.index({
         index: INDEX_NAME,
         id: product.id,
-        document: {
+        body: {
           id: product.id,
           name: product.name,
           description: product.description,

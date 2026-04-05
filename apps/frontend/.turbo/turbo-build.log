@@ -1,0 +1,38 @@
+
+> frontend@0.1.0 build C:\webpro\apps\frontend
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./apps/frontend/src/app/admin/products/edit/[id]/page.tsx:5:1
+Module not found: Can't resolve '../../components/ProductForm'
+  [90m3 |[0m [36mimport[0m [33mReact[0m, { useEffect, useState } [36mfrom[0m [32m"react"[0m;
+  [90m4 |[0m [36mimport[0m { useParams } [36mfrom[0m [32m"next/navigation"[0m;
+[31m[1m>[0m [90m5 |[0m [36mimport[0m [33mProductForm[0m [36mfrom[0m [32m"../../components/ProductForm"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m [36mimport[0m { toast } [36mfrom[0m [32m"sonner"[0m;
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mEditProductPage[0m() {
+
+
+
+Import traces:
+  Client Component Browser:
+    ./apps/frontend/src/app/admin/products/edit/[id]/page.tsx [Client Component Browser]
+    ./apps/frontend/src/app/admin/products/edit/[id]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./apps/frontend/src/app/admin/products/edit/[id]/page.tsx [Client Component SSR]
+    ./apps/frontend/src/app/admin/products/edit/[id]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./apps/frontend/src/app/admin/products/edit/[id]/page.tsx:5:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+ ELIFECYCLE  Command failed with exit code 1.
