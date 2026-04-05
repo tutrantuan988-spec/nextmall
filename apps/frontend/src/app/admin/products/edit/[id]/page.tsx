@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import ProductForm from "@/components/admin/ProductForm";
+import ProductForm from "@/app/admin/components/ProductForm";
 import { toast } from "sonner";
 
 export default function EditProductPage() {
