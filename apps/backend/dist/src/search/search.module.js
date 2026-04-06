@@ -11,17 +11,43 @@ const common_1 = require("@nestjs/common");
 const elasticsearch_1 = require("@nestjs/elasticsearch");
 const search_service_1 = require("./search.service");
 const search_controller_1 = require("./search.controller");
+const esNode = process.env.ELASTICSEARCH_NODE || 'http://localhost:9200';
+const esEnabled = !!process.env.ELASTICSEARCH_NODE;
 let SearchModule = class SearchModule {
 };
 exports.SearchModule = SearchModule;
 exports.SearchModule = SearchModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            elasticsearch_1.ElasticsearchModule.register({
-                node: 'http://localhost:9200',
-            }),
+            ...(esEnabled
+                ? [
+                    elasticsearch_1.ElasticsearchModule.register({
+                        node: esNode,
+                    }),
+                ]
+                : []),
         ],
-        providers: [search_service_1.SearchService],
+        providers: [
+            {
+                provide: search_service_1.SearchService,
+                useFactory: (...args) => {
+                    if (!esEnabled) {
+                        console.warn('[SearchModule] ELASTICSEARCH_NODE not set. Search is disabled.');
+                        return {
+                            onModuleInit: async () => { },
+                            indexProduct: async () => ({}),
+                            updateProduct: async () => ({}),
+                            removeProduct: async () => ({}),
+                            search: async () => [],
+                            suggest: async () => [],
+                        };
+                    }
+                    const esService = args[0];
+                    return new search_service_1.SearchService(esService);
+                },
+                inject: esEnabled ? ['ElasticsearchService'] : [],
+            },
+        ],
         controllers: [search_controller_1.SearchController],
         exports: [search_service_1.SearchService],
     })
