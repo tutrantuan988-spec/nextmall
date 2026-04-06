@@ -2,7 +2,9 @@ import { ConfigService } from '@nestjs/config';
 export declare class PaymentsService {
     private configService;
     private stripe;
+    private readonly logger;
     constructor(configService: ConfigService);
+    private ensureStripe;
     createCheckoutSession(order: {
         id: string;
         totalAmount: number;
