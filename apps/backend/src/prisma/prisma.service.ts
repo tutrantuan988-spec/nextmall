@@ -13,7 +13,13 @@ export class PrismaService
   private readonly logger = new Logger(PrismaService.name);
 
   constructor() {
-    super();
+    super({
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
+    });
     if (globalForPrisma.prisma) {
       Object.assign(this, globalForPrisma.prisma);
     } else {

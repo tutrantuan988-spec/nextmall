@@ -17,7 +17,13 @@ const globalForPrisma = globalThis;
 let PrismaService = PrismaService_1 = class PrismaService extends client_1.PrismaClient {
     logger = new common_1.Logger(PrismaService_1.name);
     constructor() {
-        super();
+        super({
+            datasources: {
+                db: {
+                    url: process.env.DATABASE_URL,
+                },
+            },
+        });
         if (globalForPrisma.prisma) {
             Object.assign(this, globalForPrisma.prisma);
         }
